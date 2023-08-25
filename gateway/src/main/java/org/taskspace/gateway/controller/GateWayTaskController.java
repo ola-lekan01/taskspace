@@ -17,10 +17,10 @@ import org.taskspace.usermanagement.security.UserPrincipal;
 import java.util.List;
 
 @RestController
-@RequestMapping("task")
+@RequestMapping("/task")
 @RequiredArgsConstructor
 @Tag(name = "TaskSpace tasks Management", description = "Endpoints for managing all Tasks")
-@SecurityRequirement(name = "Bearer")
+@SecurityRequirement(name = "BearerAuth")
 public class GateWayTaskController {
 
     private final TaskController taskController;

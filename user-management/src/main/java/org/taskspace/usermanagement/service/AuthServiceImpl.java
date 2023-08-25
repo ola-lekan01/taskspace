@@ -26,6 +26,8 @@ import org.taskspace.usermanagement.security.SecurityDetail;
 import org.taskspace.usermanagement.security.SecurityDetailService;
 import org.thymeleaf.context.Context;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
@@ -63,7 +65,7 @@ public class AuthServiceImpl implements AuthService {
         Role foundRole = roleService.findUserRoleByName("USER");
         AppUser user = modelMapper.map(userRequest, AppUser.class);
         user.setRoles(foundRole);
-        user.setCreatedAt(LocalDateTime.now());
+        user.setCreatedAt(LocalDate.from(Instant.now()));
         user.setUserId(generateUserId());
         user.setProvider(LOCAL);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

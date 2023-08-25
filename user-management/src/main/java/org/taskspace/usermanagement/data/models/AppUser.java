@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -41,13 +41,13 @@ public class AppUser {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "created_at", insertable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "modified_at", insertable = false, updatable = false)
-    private LocalDateTime modifiedAt;
+    private LocalDate modifiedAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "deleted_at", insertable = false, updatable = false)
-    private LocalDateTime deletedAt;
+    private LocalDate deletedAt;
 }

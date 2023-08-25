@@ -5,10 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.taskspace.usermanagement.data.models.AppUser;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Setter
@@ -41,17 +40,15 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus taskStatus;
 
-    @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @Column(name = "created_at", nullable = false, insertable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private LocalDate createdAt;
 
-    @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "modified_at", insertable = false, updatable = false)
-    private LocalDateTime modifiedAt;
+    private LocalDate modifiedAt;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @Column(name = "deleted_at", insertable = false, updatable = false)
-    private LocalDateTime deletedAt;
+    private LocalDate deletedAt;
 }

@@ -14,7 +14,7 @@ spring:
             scope: user:email, read:user
 
   datasource:
-    url: jdbc:postgresql://dpg-cjjil3ephtvs73fb06fg-a.oregon-postgres.render.com:5432/taskspace_staging
+    url: jdbc:postgresql://dpg-cjjil3ephtvs73fb06fg-a.oregon-postgres.render.com:5432/taskspace_staging_dev
     username: taskspace_postgres
     password: KWXV3j2ryLw0JSRk3Nr1PBuS9oVjRy8y
   jpa:
