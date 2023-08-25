@@ -13,7 +13,7 @@ FROM eclipse-temurin:17
 COPY --from=build /app/gateway/target/*.jar /app.jar
 
 # Expose the port that the application will run on (replace 8080 with your desired port)
-EXPOSE 9002
+EXPOSE 8080
 
 # Start the application
-CMD ["java", "-jar", "-Dserver.port=9002", "app.jar"]
+CMD ["java", "-jar", "-Dserver.port=8080", "app.jar"]
