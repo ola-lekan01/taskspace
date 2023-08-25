@@ -39,7 +39,8 @@ public class GatewayAuthenticationController {
         AppUser user = authController.registerNewUser(request);
         generateVerificationToken(user);
         return new ResponseEntity<>(new ApiResponse
-                (true, "Registration Successful and Pending verification"), HttpStatus.CREATED);
+                (true, "Registration Successful and Pending verification, " +
+                        "Please check your email for activation Link"), HttpStatus.CREATED);
     }
 
     @PostMapping("/resend-verification-token")
@@ -61,16 +62,11 @@ public class GatewayAuthenticationController {
         return new ResponseEntity<>(new ApiResponse (true, tokenResponse), HttpStatus.OK);
     }
 
-
-    @GetMapping("/oauth2/authorize/github")
-    public String  redirectToAnotherUrl() {
-        return "Hello From the Secure Endpoint";
-    }
-
-    public ResponseEntity<ApiResponse> verifyUser(String token) {
+    @GetMapping("/verify")
+    public ResponseEntity<ApiResponse> verifyUser(@RequestParam("token") String token) {
         authController.confirmVerificationToken(token);
         return new ResponseEntity<>(new ApiResponse
-                (true, "User is successfully verified"), HttpStatus.OK);
+                (true, "User is successfully verified, Please Login to Continue"), HttpStatus.OK);
     }
 
     private void sendVerificationEmail(String email, String name, String verificationLink) {

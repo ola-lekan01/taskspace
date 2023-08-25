@@ -24,6 +24,8 @@ The TaskSpace Application Backend is a comprehensive and robust backend solution
 
 - Security: Spring Security 6 and OAuth2 ensure robust protection against unauthorized access, while PostgreSQL safeguards user data.
 
+- Notification System: Automated Emails for Email verifications, Task reminders and Notifications.
+
 - Flexibility: Spring Boot's flexibility and Spring Security's customization capabilities enable the adaptation of the backend to various application requirements.
 
 - Performance: Java 17's performance enhancements and Spring Boot's optimized configuration contribute to excellent runtime performance.
@@ -56,7 +58,7 @@ To build and run this project, you'll need:
 - CRUD operations for managing tasks 
 - PostgreSQL database integration 
 - API documentation using Swagger 
-- OAuth2 integration with github and google for secure authentication
+- OAuth2 integration with github and google for secure authentication and authorization
 - JWT-based token authentication
 
 ## Getting Started
@@ -80,6 +82,7 @@ To get started with TaskSpace, you will need to clone this repository to your lo
 3. Configure database username and password
 
      ```properties
+   # This is optional if you're testing the app in localhost. A demo database is already provided.
    # src/main/resources/application.yml
      spring:
        datasource:
@@ -92,7 +95,7 @@ To get started with TaskSpace, you will need to clone this repository to your lo
 4. specify OAuth2 Provider ClientIds and ClientSecrets 
 - This is optional if you're testing the app in localhost. A demo clientId and clientSecret is already specified.
 
-- Set up the backend server:
+5.  Set up the backend server:
    ```bash
      mvn spring-boot:run
    ```

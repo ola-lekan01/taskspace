@@ -35,6 +35,7 @@ import static java.lang.String.format;
 import static org.taskspace.usermanagement.data.models.AuthProvider.LOCAL;
 import static org.taskspace.usermanagement.data.models.TokenType.REFRESH;
 import static org.taskspace.usermanagement.data.models.TokenType.VERIFICATION;
+import static org.taskspace.usermanagement.utils.ApplicationConstant.EXPIRATION;
 import static org.taskspace.usermanagement.utils.ApplicationConstant.TASK_SPACE_EMAIL;
 import static org.taskspace.usermanagement.utils.utils.UserUtility.generateUserId;
 
@@ -86,9 +87,17 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Token createVerificationToken(AppUser user, String tokenType) {
         String token = UUID.randomUUID().toString();
-        Token verificationToken = new Token(token, user, tokenType);
+        Optional<Token> optionalToken = tokenRepository.findByUser(user);
+        Token verificationToken;
+        if (optionalToken.isPresent()) {
+            verificationToken = optionalToken.get();
+            verificationToken.setToken(token);
+            verificationToken.setTokenType(tokenType);
+            verificationToken.setExpiryDate(LocalDateTime.now().plusHours(EXPIRATION));
+        } else verificationToken = new Token(token, user, tokenType);
         return tokenRepository.save(verificationToken);
     }
+
 
     @Transactional
     @Override
