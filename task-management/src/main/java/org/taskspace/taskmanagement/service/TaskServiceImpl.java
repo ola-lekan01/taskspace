@@ -51,7 +51,7 @@ public class TaskServiceImpl implements TaskService{
         Task foundTask = taskRepository.findByTaskIdAndAppUser(taskId, foundUser)
                 .orElseThrow((()-> new TaskSpaceException("Task Id Does not Exist")));
         Task updatedTask = mapper.map(request, foundTask.getClass());
-        updatedTask.setModifiedAt(LocalDate.from(Instant.now()));
+        updatedTask.setModifiedAt(LocalDate.now());
         if(request.getTaskPriority() != null) foundTask.setTaskPriority(Priority.valueOf(request.getTaskPriority()));
         if(request.getDueDate() != null) foundTask.setDueDate(parseDateString(request.getDueDate()));
         return taskRepository.save(updatedTask);
@@ -62,7 +62,7 @@ public class TaskServiceImpl implements TaskService{
         AppUser foundUser = internalFindUserByEmail(userPrincipal.getEmail());
         Task foundTask = taskRepository.findByTaskIdAndAppUser(taskId, foundUser)
                 .orElseThrow((()-> new TaskSpaceException("Task Id Does not Exist")));
-        foundTask.setDeletedAt(LocalDate.from(Instant.now()));
+        foundTask.setDeletedAt(LocalDate.now());
         foundTask.setTaskStatus(DELETED);
         taskRepository.save(foundTask);
         return "Task Successfully Deleted";

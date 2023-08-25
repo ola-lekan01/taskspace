@@ -18,7 +18,6 @@ import org.taskspace.usermanagement.security.UserPrincipal;
 import org.taskspace.usermanagement.service.RoleService;
 import org.thymeleaf.context.Context;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -78,7 +77,7 @@ public class Oauth2CustomUserService extends DefaultOAuth2UserService {
         userToSave.setProviderId(oauth2UserData.getUserId());
         userToSave.setUserId(generateUserId());
         userToSave.setRoles(foundRole);
-        userToSave.setCreatedAt(LocalDate.from(Instant.now()));
+        userToSave.setCreatedAt(LocalDate.now());
         sendWelcomeEmail(oauth2UserData.getEmail(), oauth2UserData.getName());
         return userRepository.save(userToSave);
     }

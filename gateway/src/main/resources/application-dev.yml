@@ -26,7 +26,6 @@ spring:
     open-in-view: false
     database: postgresql
 
-
 app:
   auth:
     token-secret: 04ca023b39512e46d0c2cf4b48d5aac61d343848vvc87ed4eff225dcf3b0a218739f3897051a057f9b846a69ea2927a587044164b7bae5e1306219d50b588cb1
@@ -34,3 +33,6 @@ app:
 
   oauth2:
     authorized-redirect-uris: http://localhost:8080/login/oauth2/code/*
+
+server:
+  port: 8080
