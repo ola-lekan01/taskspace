@@ -16,4 +16,4 @@ COPY --from=build /app/gateway/target/*.jar /app.jar
 EXPOSE 8080
 
 # Start the application
-CMD ["java", "-jar", "-Dserver.port=8080", "app.jar"]
+CMD ["java", "-jar", "./mvnw", "spring-boot:run", "app.jar"]
